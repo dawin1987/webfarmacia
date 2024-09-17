@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factura</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="invoice">
+        <div class="header">
+            <img src="img/logofarm.jpeg" alt="Logo" class="logo">
+            <h1>MayreniNails</h1>
+				<h2>*Todo lo que buscad en un sólo lugar*</h2>
+            <p>RNC: 123-123456-1</p>
+            <p>C/San Rafael #18, Cevicos</p>
+            <p>Tel: 809-585-0302 – WhatsApp: 809-322-6836</p>
+            <p>----------------------------------</p>
+        </div>
+
+        <div class="invoice-details">
+           
+    <p>Factura No.: <span id="numeroRecord">___________</span></p>
+    <div class="inline-details">
+        <p>Fecha Venta: <span id="fechaRegistro">___________</span></p>
+        <p>Hora: <span id="horaVenta">___________</span></p>
+    </div>
+</div>
+
+        <table class="items">
+            <thead>
+                <tr>
+                    
+		    <th>ID_SALIDA</th>
+                    <th>PRECIO</th>
+                    <th>DEPARTAMENTO</th>
+                    <th>SOLICITANTE</th>
+                    <th>DESPACHADO POR</th>
+                    <th>STOCK</th>
+                    <th>FECHA DE SALIDA</th>
+                    <th>MES</th>
+                    <th>AÑO</th>
+                    <th>ESTADO</th>
+
+                </tr>
+            </thead>
+            <tbody id="items">
+                <!-- Aquí se agregarán los artículos -->
+		    
+             </tbody>
+        </table>
+
+        <table class="totals-table">
+            <tbody>
+
+                <tr>
+                    <td> SUBTOTAL: </td>
+                    <td><span id="sub_total" class="value descuento">___________</span></td>
+                </tr>
+
+		     <tr>
+                    	<td>DESCUENTO:</td>
+                   	 <td><span id="descuento" class="value descuento">-N/A-</span></td>
+                	</tr>
+		    
+                <tr>
+                    <td class="total_a_pagar"> TOTAL A PAGAR: </td>
+                    <td><span id="total" class="value total">___________</span></td>
+                </tr>
+		       
+                <tr>
+                    <td>EFECTIVO RECIBIDO:</td>
+                    <td><span id="efectivoRecibido" class="value efectivoRecibido">___________</span></td>
+                </tr>
+                <tr>
+                    <td>CAMBIO:</td>
+                    <td><span id="devuelta" class="value devuelta">___________</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="footer">
+            <p>------------------------------------------</p>
+            <p>***Gracias por preferirnos***</p>
+            <p>No aceptamos devoluciones</p>
+            <p>No hacemos reembolso</p>
+            <p>Le atendió: <span id="usuarioAtendio">___________</span></p>
+		<p>------------------- * * * ------------------</p>
+		<p>By WindTecnology</p>
+        </div>
+    </div>
+
+    <script>
+        // Captura los parámetros de la URL:
+        const urlParams = new URLSearchParams(window.location.search);
+        document.getElementById('fechaRegistro').textContent = urlParams.get('id_salida') || '________';
+        document.getElementById('numeroRecord').textContent = urlParams.get('precio') || '________';
+        document.getElementById('horaVenta').textContent = urlParams.get('departamento') || '________';
+        document.getElementById('sub_total').textContent = urlParams.get('solicitante') || 'N/A';
+        document.getElementById('total').textContent = urlParams.get('despachado_por') || '________';
+        document.getElementById('descuento').textContent = urlParams.get('stock') || 'N/A';
+        document.getElementById('usuarioAtendio').textContent = urlParams.get('fecha_salida') || '________';
+        document.getElementById('efectivoRecibido').textContent = urlParams.get('mes') || '0';
+        document.getElementById('devuelta').textContent = urlParams.get('anio') || '0';
+        document.getElementById('devuelta').textContent = urlParams.get('estado') || '0';
+
+
+
+   // Obtener y procesar los artículos de la URL
+        const articulos = decodeURIComponent(urlParams.get('articulos') || '');
+        console.log('Artículos:', articulos);
+
+        const items = (articulos || '').split('|').map(item => {
+            const [id_salida, precio, departamento, solicitante, despachado_por, stock, fecha_salida, mes, año, estado ] = item.split('~'); // Usar ~ como delimitador
+            return {
+                id_salida: decodeURIComponent(id_salida || 'N/A'),
+                precio: decodeURIComponent(precio || 'N/A'),
+                departamento: decodeURIComponent(departamento || 'N/A'),
+                solicitante: decodeURIComponent(solicitante || 'N/A'),
+                despachado_por: decodeURIComponent(despachado_por || 'N/A'),
+		stock: decodeURIComponent(stock || 'N/A'),
+		fecha_salida: decodeURIComponent(fecha_salida || 'N/A'),
+		mes: decodeURIComponent(mes || 'N/A'),
+		año: decodeURIComponent(año || 'N/A'),
+		estado: decodeURIComponent(estado || 'N/A')
+            }; });
+
+        // Filtrar artículos válidos (al menos una propiedad debe estar presente)
+        const validItems = items.filter(item => item.id_salida !== 'N/A' || item.precio !== 'N/A' || item.departamento !== 'N/A' || item.solicitante !== 'N/A' || item.despachado_por !== 'N/A' || item.stock !== 'N/A'|| item.mes !== 'N/A' || item.año !== 'N/A' || item.estado !== 'N/A');
+
+        console.log('Valid Items:', validItems);
+
+        // Insertar los artículos en la tabla
+        const itemsTable = document.getElementById('items');
+        validItems.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.id_salida}</td>
+                <td>${item.precio}</td>
+                <td>${item.departamento}</td>
+                <td>${item.solicitante}</td>
+		<td>${item.despachado_por}</td>
+                <td>${item.stock}</td>
+                <td>${item.fecha_salida}</td>
+		<td>${item.mes}</td>
+		<td>${item.año}</td>
+		<td>${item.estado}</td>
+            `;
+            itemsTable.appendChild(row);
+        });
+
+        // Activar impresión automáticamente
+        window.onload = function() {
+            window.print();
+        };
+    </script>
+</body>
+</html>
