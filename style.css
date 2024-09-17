@@ -1,0 +1,166 @@
+body {
+    font-family: 'Courier New', Courier, monospace; /* Fuente comÃƒÆ’Ã‚Âºn para recibos */
+    letter-spacing: -0.5px; /* Ajustar el espacio entre letras */
+    line-height: 1.2; /* Ajustar el espacio entre lÃƒÆ’Ã‚Â­neas */
+background-color: #c5323200;
+        font-weight: bold;
+}
+
+.invoice {
+    height: auto;
+    width: 80mm; /* Ancho ajustado a 80mm */
+    margin: auto;
+    padding: 8px; /* Ajustar padding para mejor encaje */
+    /* border: 1px solid #000; */
+    background-color: #ffffff;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+}
+
+
+.header {
+    text-align: center;
+    margin-bottom: 10px; /* Reducido para mejor encaje */
+}
+.footer p {
+    text-align: center;
+    margin-bottom: 5px; /* Reducido para mejor encaje */
+    margin-top: 3px;
+    font-size: 12px; /* Ajustar el tamaÃƒÆ’Ã‚Â±o de fuente para mejor encaje */
+}
+
+.header .logo {
+    display: block;
+    margin: 0 auto 5px; /* Ajustar mÃƒÆ’Ã‚Â¡rgenes para mejor encaje */
+    max-width: 50mm; /* Ajustar el tamaÃƒÆ’Ã‚Â±o de la imagen para que se ajuste al ancho */
+    height: auto;
+}
+
+.invoice-details, .totals {
+    margin-bottom: 5px; /* Reducido para mejor encaje */
+}
+
+.inline-details {
+    display: flex;
+    justify-content: space-between; /* Espaciado entre elementos */
+}
+
+.inline-details p {
+    margin: 0; /* Eliminar margen entre los pÃƒÆ’Ã‚Â¡rrafos */
+    padding: 0 0%; /* Espacio entre los elementos */
+}
+
+.items {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+   
+    /*border: 1px solid #020202;
+    border: 1px solid #4e4e4e;*/
+    border-top: 1.5px solid #636262; /* bordes de la tabla*/
+    border-bottom: 1px solid #696969;
+    padding: 4px; /* Reducir padding para mejor encaje */
+    text-align: left;
+    font-size: 12px; /* Ajustar el tamaÃƒÆ’Ã‚Â±o de fuente para mejor encaje */
+    letter-spacing: -0.5px; /* Ajustar el espacio entre letras */
+    line-height: 10px; /* Ajustar el espacio entre lÃƒÆ’Ã‚Â­neas */
+}
+tbody tr {
+    border-bottom: 2px; /* Eliminamos el borde inferior por defecto */
+border: 0px solid #ddd;
+}
+tbody th, td, tr + tr{
+    border-top: 1px dashed rgb(216, 216, 216); /* Añadimos el borde rojo tipo guion */
+border-bottom: 1px dashed rgb(221, 220, 220);
+}
+
+/*.totals p {
+    text-align: right;
+    font-size: 12px; /* Ajustar el tamaÃƒÆ’Ã‚Â±o de fuente para mejor encaje */
+   /* letter-spacing: -0.5px; /* Ajustar el espacio entre letras */
+    /*line-height: 15px; /* Ajustar el espacio entre lÃƒÆ’Ã‚Â­neas */
+    /* margin-right: 28px;
+}
+
+/*.totals .montototal {
+    
+font-size: 15px; /* Ajustar el tamaÃƒÆ’Ã‚Â±o de fuente para mejor encaje */
+    
+/*color: rgb(44, 44, 44);
+    
+/* font-family: cursive; */
+    
+/*font-weight: bold;
+}*/
+
+
+
+.totals-table {
+    width: 76%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    text-align: right;
+    margin-left: 55px;
+}
+.totals-table th, .totals-table td {
+    padding: 5px;
+    text-align: right;
+    border: 1px solid #ffffff;
+}
+.totals-table th {
+    background-color: #c0c0c0;
+}
+.totals-table .value {
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+}
+.totals-table .total {
+    color: rgb(10, 10, 10);
+    text-align: left;
+}
+.total_a_pagar
+{
+    text-align: left;
+    font-size: 15px; /* Ajustar el tamaÃƒÆ’Ã‚Â±o de fuente para mejor encaje */
+color: #333;
+ 
+font-weight: bold;
+
+}
+.totals-table .descuento {
+    color: #333;
+    text-align: left;
+}
+.totals-table .efectivoRecibido {
+    color: #333;
+    text-align: left;
+}
+.totals-table .devuelta {
+    color: #333;
+    text-align: left;
+}
+
+
+
+.header p {
+margin-bottom: 5px;
+margin-top: 5px;
+}
+.invoice p {
+    font-size: 12px; /* Ajustar el tamaÃƒÆ’Ã‚Â±o de fuente para mejor encaje */
+    letter-spacing: -0.5px; /* Ajustar el espacio entre letras */
+    line-height: 10px; /* Ajustar el espacio entre lÃƒÆ’Ã‚Â­neas */
+}
+
+.invoice h1 {
+    font-size: 30px; /* Ajustar el tamaÃƒÆ’Ã‚Â±o de fuente para mejor encaje */
+    letter-spacing: 1px; /* Ajustar el espacio entre letras */
+    line-height: 10px; /* Ajustar el espacio entre lÃƒÆ’Ã‚Â­neas */
+}
+.invoice h2 {
+    font-size: 15px; /* Ajustar el tamaÃƒÆ’Ã‚Â±o de fuente para mejor encaje */
+    letter-spacing: -0.5px; /* Ajustar el espacio entre letras */
+    line-height: 15px; /* Ajustar el espacio entre lÃƒÆ’Ã‚Â­neas */
+}
